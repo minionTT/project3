@@ -26,8 +26,10 @@ class Student{
                             findMax = true;
                         }else if(Record[i][j] == M){
                             if(i>0 && i<4 && j>0 && j<5){
-                                if((Record[i-1][j]<=M || color[i-1][j]==Black) && (Record[i+1][j]<=M || color[i+1][j]==Black)
-                                && (Record[i][j-1]<=M || color[i][j-1]==Black) && (Record[i][j+1]<=M || color[i][j+1]==Black)
+                                if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
+                                && ( ( (Max[i+1][j]-Record[i+1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black)
+                                && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black)
+                                && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black)
                                 && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
                                     maxI = i;
                                     maxJ = j;
@@ -43,9 +45,11 @@ class Student{
                             firstJ = j;
                             findFirst = true;
                         }else{
-                            if((i+j)%3==1){
-                                firstI = i;
-                                firstJ = j;
+                            if(i>0 && i<4 && j>0 && j<5){
+                                if(color[i-1][j]!=cptColor && color[i+1][j]!=cptColor && color[i][j-1]!=cptColor && color[i][j+1]!=cptColor){
+                                    firstI = i;
+                                    firstJ = j;
+                                }
                             }
                         }
                     }
@@ -83,3 +87,5 @@ class Student{
         int x;
         int y;
     };
+
+
