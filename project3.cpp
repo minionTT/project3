@@ -7,6 +7,14 @@ class Student{
             int M = 0;
             bool findFirst = false,findMax = false;
             int num = 0;
+            Color cptColor;
+
+            if(inputColor==Blue){
+                cptColor = Red;
+            }else{
+                cptColor = Blue;
+            }
+
             for(i=0; i<5; i++){
                 for(j=0; j<6; j++){
                     if(color[i][j] == inputColor){
@@ -17,11 +25,16 @@ class Student{
                             M = Record[i][j];
                             findMax = true;
                         }else if(Record[i][j] == M){
-                            if((i+j)%3==0){
-                                maxI = i;
-                                maxJ = j;
-                                M = Record[i][j];
+                            if(i>0 && i<4 && j>0 && j<5){
+                                if((Record[i-1][j]<=M || color[i-1][j]==Black) && (Record[i+1][j]<=M || color[i+1][j]==Black)
+                                && (Record[i][j-1]<=M || color[i][j-1]==Black) && (Record[i][j+1]<=M || color[i][j+1]==Black)
+                                && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
+                                    maxI = i;
+                                    maxJ = j;
+                                    M = Record[i][j];
+                                }
                             }
+                            
                         }
                     }
                     if(color[i][j] == White){
