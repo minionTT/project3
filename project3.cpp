@@ -249,7 +249,7 @@ class Student{
                                     }
                                 }
                             }
-                            if(!findAlone){
+                            if(!findAlone && !findBigger){
                                 maxI = i;
                                 maxJ = j;
                                 M = Record[i][j];
@@ -330,12 +330,12 @@ class Student{
             }else if(findFirstAlone){
                 x = firstI;
                 y = firstJ;  
-            }else if(findAlone){
-                x = maxI;
-                y = maxJ;
             }else if(findFirst){
                 x = firstI;
                 y = firstJ;
+            }else if(findAlone){
+                x = maxI;
+                y = maxJ;
             }else{
                 x = maxI;
                 y = maxJ;
