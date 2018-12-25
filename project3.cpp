@@ -5,7 +5,7 @@ class Student{
             int i,j;
             int firstI,firstJ,maxI,maxJ;
             int M = 0;
-            bool findFirst = false,findMax = false;
+            bool findFirst = false,findMax = false,findBigger = false;
             int num = 0;
             Color cptColor;
 
@@ -24,6 +24,15 @@ class Student{
                             maxJ = j;
                             M = Record[i][j];
                             findMax = true;
+                            if(i>0 && i<4 && j>0 && j<5){
+                                if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
+                                && ( ( (Max[i+1][j]-Record[i+1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black)
+                                && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black)
+                                && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black)
+                                && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
+                                    findBigger = true;
+                                }
+                            }
                         }else if(Record[i][j] == M){
                             if(i>0 && i<4 && j>0 && j<5){
                                 if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
@@ -34,6 +43,17 @@ class Student{
                                     maxI = i;
                                     maxJ = j;
                                     M = Record[i][j];
+                                    findBigger = true;
+                                }
+                            }
+                            if(!findBigger){
+                                if(i>0 && i<4 && j>0 && j<5){
+                                    if( color[i-1][j]!=cptColor && color[i+1][j]!=cptColor && color[i][j-1]!=cptColor && color[i][j+1]!=cptColor){
+                                        maxI = i;
+                                        maxJ = j;
+                                        M = Record[i][j];
+                                        findBigger = false;
+                                    }
                                 }
                             }
                             
@@ -87,5 +107,3 @@ class Student{
         int x;
         int y;
     };
-
-
