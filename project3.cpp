@@ -541,10 +541,10 @@ class Student{
                                 if(i>0 && i<4 && j>0 && j<5){
                                     if( color[i-1][j]!=cptColor && color[i+1][j]!=cptColor && color[i][j-1]!=cptColor && color[i][j+1]!=cptColor
                                     && Record[i][j] <= A
-                                    &&  ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
-                                    &&  ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black)
-                                    &&  ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black)
-                                    &&  ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black)){
+                                    &&  ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==White) 
+                                    &&  ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==White)
+                                    &&  ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==White)
+                                    &&  ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
@@ -554,8 +554,8 @@ class Student{
                                 }else if(i==0 && j==0){
                                     if( (color[i+1][j]!=cptColor && color[i][j+1]!=cptColor)
                                     && Record[i][j] <= A
-                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black)
-                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black)){
+                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==White)
+                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
@@ -565,8 +565,8 @@ class Student{
                                 }else if(i==4 && j==0){
                                     if( (color[i-1][j]!=cptColor && color[i][j+1]!=cptColor)
                                     && Record[i][j] <= A
-                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
-                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black)){
+                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==White) 
+                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
@@ -576,8 +576,8 @@ class Student{
                                 }else if(i==0 && j==5){
                                     if( (color[i+1][j]!=cptColor && color[i][j-1]!=cptColor)
                                     && Record[i][j] <= A
-                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black)
-                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black)){
+                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==White)
+                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
@@ -587,8 +587,8 @@ class Student{
                                 }else if(i==4 && j==5){
                                     if( (color[i-1][j]!=cptColor && color[i][j-1]!=cptColor)
                                     && Record[i][j] <= A
-                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
-                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black)){
+                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==White) 
+                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
@@ -598,9 +598,9 @@ class Student{
                                 }else if(i==0){
                                     if( (color[i+1][j]!=cptColor && color[i][j-1]!=cptColor && color[i][j+1]!=cptColor)
                                     && Record[i][j] <= A
-                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black)
-                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black)
-                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black)){
+                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==White)
+                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==White)
+                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
@@ -610,9 +610,9 @@ class Student{
                                 }else if(j==0){
                                     if( (color[i-1][j]!=cptColor && color[i+1][j]!=cptColor && color[i][j+1]!=cptColor)
                                     && Record[i][j] <= A
-                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
-                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black)
-                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black)){
+                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==White) 
+                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==White)
+                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
@@ -622,9 +622,9 @@ class Student{
                                 }else if(i==4){
                                     if( (color[i-1][j]!=cptColor && color[i][j-1]!=cptColor && color[i][j+1]!=cptColor)
                                     && Record[i][j] <= A
-                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
-                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black)
-                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black)){
+                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==White) 
+                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==White)
+                                    && ( ( (Max[i][j+1]-Record[i][j+1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
@@ -634,9 +634,9 @@ class Student{
                                 }else if(j==5){
                                     if( (color[i-1][j]!=cptColor && color[i+1][j]!=cptColor && color[i][j-1]!=cptColor )
                                     && Record[i][j] <= A
-                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black) 
-                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black)
-                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black)){
+                                    && ( ( (Max[i-1][j]-Record[i-1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==White) 
+                                    && ( ( (Max[i+1][j]-Record[i+1][j]) <= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==White)
+                                    && ( ( (Max[i][j-1]-Record[i][j-1]) <= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==White)){
                                         maxI = i;
                                         maxJ = j;
                                         A = Record[i][j];
