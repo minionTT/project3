@@ -5,10 +5,11 @@ class Student{
             int i,j;
             int firstI,firstJ,maxI,maxJ;
             int M = 0,A = 3;
-            bool findFirst = false,findFirstSolo = false,findBigger = false,findAlone = false,findFirstAlone = false,findAloneSmaller = false;
+            bool findFirst = false,findFirstSolo = false,findBigger = false,findAlone = false,findFirstAlone = false,findAloneSmaller = false,explode = false;
             int num = 0;
             int type = 4;
             int diff = 3;
+            int diffExp = 3;
             Color cptColor;
 
             if(inputColor==Blue){
@@ -95,35 +96,40 @@ class Student{
                                 &&  ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
                                 && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
@@ -159,21 +165,24 @@ class Student{
                                 && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
                                 && (color[i+1][j]==cptColor || color[i][j+1]==cptColor)){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
@@ -195,21 +204,24 @@ class Student{
                                 && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
                                 && (color[i-1][j]==cptColor || color[i][j+1]==cptColor)){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
@@ -231,21 +243,24 @@ class Student{
                                 && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
                                 && (color[i+1][j]==cptColor || color[i][j-1]==cptColor)){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
@@ -267,21 +282,24 @@ class Student{
                                 && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
                                 && (color[i-1][j]==cptColor || color[i][j-1]==cptColor)){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
@@ -304,28 +322,32 @@ class Student{
                                 && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
                                 && (color[i+1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
@@ -355,28 +377,32 @@ class Student{
                                 && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
                                 && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j+1]==cptColor)){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
@@ -406,28 +432,32 @@ class Student{
                                 && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
                                 && (color[i-1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j+1]==cptColor && ( ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j+1]-Record[i][j+1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
@@ -457,28 +487,32 @@ class Student{
                                 && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
                                 && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j-1]==cptColor )){
                                     if(Record[i][j]==(Max[i][j]-1)){
-                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i+1][j]==cptColor && ( ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i+1][j]-Record[i+1][j])-(Max[i][j]-Record[i][j]) );
                                         }
-                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
+                                        if(color[i][j-1]==cptColor && ( ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) ) <= diffExp ) ){
                                         maxI = i;
                                         maxJ = j;
                                         M = Record[i][j];
                                         findBigger = true;
-                                        diff = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
+                                        explode = true;
+                                        diffExp = ( (Max[i][j-1]-Record[i][j-1])-(Max[i][j]-Record[i][j]) );
                                         }
-                                    }else{
+                                    }
+                                    if(!explode){
                                         if(color[i-1][j]==cptColor && ( ( (Max[i-1][j]-Record[i-1][j])-(Max[i][j]-Record[i][j]) ) <= diff ) ){
                                         maxI = i;
                                         maxJ = j;
