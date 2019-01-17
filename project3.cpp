@@ -5,7 +5,8 @@ class Student{
             int i,j;
             int firstI,firstJ,maxI,maxJ;
             int M = 0,A = 1, B = 1;
-            bool findFirst = false,findFirstSolo = false,findBigger = false,findAlone = false,findFirstAlone = false,findAloneSmaller = false,explode = false;
+            bool findFirst = false,findFirstSolo = false,findBigger = false,findAlone = false;
+            bool findFirstAlone = false,findAloneSmaller = false,explode = false, findFirstBigger = false;
             int num = 0;
             int type = 4;
             int diff = 3;
@@ -650,7 +651,86 @@ class Student{
                         }
                     }// end of inputColor
                     if(color[i][j] == White){
-                        
+                            if(i>0 && i<4 && j>0 && j<5){
+                                if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==inputColor) 
+                                &&  ( ( (Max[i+1][j]-Record[i+1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==inputColor)
+                                &&  ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
+                                &&  ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
+                                && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }
+                            }else if(i==0 && j==0){
+                                if( ( ( (Max[i+1][j]-Record[i+1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==inputColor)
+                                && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
+                                && (color[i+1][j]==cptColor || color[i][j+1]==cptColor)){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }    
+                            }else if(i==4 && j==0){
+                                if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==inputColor) 
+                                && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
+                                && (color[i-1][j]==cptColor || color[i][j+1]==cptColor)){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }    
+                            }else if(i==0 && j==5){
+                                if( ( ( (Max[i+1][j]-Record[i+1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==inputColor)
+                                && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
+                                && (color[i+1][j]==cptColor || color[i][j-1]==cptColor)){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }
+                            }else if(i==4 && j==5){
+                                if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==inputColor) 
+                                && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
+                                && (color[i-1][j]==cptColor || color[i][j-1]==cptColor)){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }
+                            }else if(i==0){
+                                if( ( ( (Max[i+1][j]-Record[i+1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==inputColor)
+                                && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
+                                && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
+                                && (color[i+1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }
+                            }else if(j==0){
+                                if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==inputColor) 
+                                && ( ( (Max[i+1][j]-Record[i+1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==inputColor)
+                                && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
+                                && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j+1]==cptColor)){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }
+                            }else if(i==4){
+                                if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==inputColor) 
+                                && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
+                                && ( ( (Max[i][j+1]-Record[i][j+1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j+1]==Black || color[i][j+1]==inputColor)
+                                && (color[i-1][j]==cptColor || color[i][j-1]==cptColor || color[i][j+1]==cptColor)){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }
+                            }else if(j==5){
+                                if( ( ( (Max[i-1][j]-Record[i-1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i-1][j]==Black || color[i-1][j]==inputColor) 
+                                && ( ( (Max[i+1][j]-Record[i+1][j]) >= (Max[i][j]-Record[i][j]) ) || color[i+1][j]==Black || color[i+1][j]==inputColor)
+                                && ( ( (Max[i][j-1]-Record[i][j-1]) >= (Max[i][j]-Record[i][j]) ) || color[i][j-1]==Black || color[i][j-1]==inputColor)
+                                && (color[i-1][j]==cptColor || color[i+1][j]==cptColor || color[i][j-1]==cptColor )){
+                                    firstI = i;
+                                    firstJ = j;
+                                    findFirstBigger = true;
+                                }
+                            }
+                        if(!findFirstBigger){
                             if(i>0 && i<4 && j>0 && j<5){
                                 if(color[i-1][j]!=cptColor && color[i+1][j]!=cptColor && color[i][j-1]!=cptColor && color[i][j+1]!=cptColor
                                 && color[i-1][j]!=inputColor && color[i+1][j]!=inputColor && color[i][j-1]!=inputColor && color[i][j+1]!=inputColor
@@ -733,8 +813,8 @@ class Student{
                                     type = 3;
                                 }
                             }
-                        
-                        if(!findFirstSolo){
+                        }
+                        if(!findFirstBigger && !findFirstSolo){
                             if(i>0 && i<4 && j>0 && j<5){
                                 if(color[i-1][j]!=cptColor && color[i+1][j]!=cptColor && color[i][j-1]!=cptColor && color[i][j+1]!=cptColor){
                                     firstI = i;
@@ -791,7 +871,7 @@ class Student{
                                 }
                             }
                         }
-                        if(!findFirstSolo && !findFirstAlone){
+                        if(!findFirstBigger && !findFirstSolo && !findFirstAlone){
                             firstI = i;
                             firstJ = j;
                             findFirst = true;
@@ -802,15 +882,18 @@ class Student{
             if(findBigger){
                 x = maxI;
                 y = maxJ;
+            }else if(findFirstBigger){
+                x = firstI;
+                y = firstJ; 
             }else if(findFirstSolo){
                 x = firstI;
                 y = firstJ; 
-            }else if(findAloneSmaller){
-                x = maxI;
-                y = maxJ;
             }else if(findFirstAlone){
                 x = firstI;
                 y = firstJ;  
+            }else if(findAloneSmaller){
+                x = maxI;
+                y = maxJ;
             }else if(findFirst){
                 x = firstI;
                 y = firstJ;
